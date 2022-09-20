@@ -8,6 +8,7 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { Names } from "../models/country-response";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/nav-bar";
+import Spinner from "react-bootstrap/Spinner";
 
 const CountryListing = () => {
   const navigate = useNavigate();
@@ -49,44 +50,48 @@ const CountryListing = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
         </Modal.Footer>
       </Modal>
 
-      <div className="p-4">
-        <table className="table-auto w-full ">
-          <thead>
-            <tr>
-              <th>CCA2</th>
-              <th>Common Name,</th>
-              <th>Capital</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {countries?.length > 0 &&
-              countries.map((item, index): any => (
-                <tr key={index}>
-                  <td>{item.cca2}</td>
-                  <td>{item.name.common}</td>
-                  <td>{item.capital}</td>
-                  <td>
-                    <button
-                    onClick={()=>goToDetail(item.cca3)}
-                      className="px-2 py-2"
-                      type="button"
-                    >
-                       <BsFillEyeFill size={20} className="text-primary" />
-                    </button>
-
-                    
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+      <div className="p-4 justify-center items-center">
+        {loading ? (
+          <div className="h-96 flex justify-center items-center">
+            <Spinner
+              animation="border"
+              variant="primary"
+            />
+          </div>
+        ) : (
+          <table className="table-auto w-full ">
+            <thead>
+              <tr>
+                <th>CCA2</th>
+                <th>Common Name,</th>
+                <th>Capital</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {countries?.length > 0 &&
+                countries.map((item, index): any => (
+                  <tr key={index}>
+                    <td>{item.cca2}</td>
+                    <td>{item.name.common}</td>
+                    <td>{item.capital}</td>
+                    <td>
+                      <button
+                        onClick={() => goToDetail(item.cca3)}
+                        className="px-2 py-2"
+                        type="button"
+                      >
+                        <BsFillEyeFill size={20} className="text-primary" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import { loginAction } from "../state/actions/auth.actions";
 import { useEffect } from "react";
 import { LoginPayload } from "../models/login-payload";
 import { Constants } from "../core/variables/constants";
-
+import Spinner from 'react-bootstrap/Spinner';
 // type FormValues = {
 //   email: string;
 //   password: string;
@@ -18,7 +18,7 @@ import { Constants } from "../core/variables/constants";
 
 const Login = () => {
   const dispatch = useDispatch<any>();
-  const { loading, isAuthenticated, error } = useSelector(
+  const { loading, isAuthenticated,token, error } = useSelector(
     (state: any) => state.auth
   );
   const navigate = useNavigate();
@@ -44,12 +44,14 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(isAuthenticated);
-    
+    const token=localStorage.getItem(Constants.TOKEN);
+    // if(token){
+    //   navigate("/");
+    // }
     if (isAuthenticated) {
       navigate("/");
     }
-  }, [navigate, isAuthenticated]);
+  }, [isAuthenticated]);
 
   const onErrors = (data: any) => {
     console.log(data);
@@ -68,7 +70,9 @@ const Login = () => {
   };
 
   return (
+    
     <div className={classes.pageBody}>
+       
       <div className={classes.formContainer}>
         <h1 className={classes.formHeading}>Log in to your account 🔐</h1>
 
@@ -112,15 +116,18 @@ const Login = () => {
               name="rememberMe"
             />
             <label htmlFor="checkbox">Remember me</label>
+            
           </div>
 
           <div className={classes.btnContainer}>
             <button
+
               disabled={loading}
-              className="bg-primary  text-white  px-4 py-2 text-gray-800  rounded-md shadow hover:bg-gray-100"
+              className="items-center  bg-primary  text-white  px-4 py-2 text-gray-800  rounded-md shadow hover:bg-gray-100"
               type="submit"
             >
-              LOGIN
+              {loading ? <Spinner  animation="border" variant="light" /> : <span>LOGIN</span> }
+              
             </button>
 
             {/* <button
