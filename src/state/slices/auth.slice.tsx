@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Constants } from "../../core/variables/constants";
 import { loginAction } from "../actions/auth.actions";
+import { logoutAction } from "../actions/auth.actions";
 
 // initialize userToken from local storage
 // const token = localStorage.getItem(Constants.TOKEN)
@@ -18,7 +19,18 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout(state) {
+      state.isAuthenticated = false;
+      localStorage.clear();
+    },
+    logoutError(state, action) {
+      state.isAuthenticated = true;
+    },
+    doAuth(state) {
+      state.isAuthenticated = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginAction.fulfilled, (state, { payload }) => {
@@ -38,5 +50,5 @@ const authSlice = createSlice({
       });
   },
 });
-
+export const { logout, logoutError, doAuth } = authSlice.actions;
 export default authSlice.reducer;

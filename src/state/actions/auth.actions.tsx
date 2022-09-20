@@ -3,6 +3,9 @@ import axios from "axios";
 import { Constants } from "../../core/variables/constants";
 import { enviroment } from "../../core/variables/enviroment";
 import { LoginPayload } from "../../models/login-payload";
+import {logout,logoutError,doAuth} from "../slices/auth.slice";
+
+
 
 export const loginAction = createAsyncThunk(
   "auth/login",
@@ -18,9 +21,8 @@ export const loginAction = createAsyncThunk(
         loginPayload,
         config
       );
-
-      localStorage.setItem(Constants.TOKEN, data.token);
       if (loginPayload.rememberMe) {
+        localStorage.setItem(Constants.TOKEN, data.token);
         localStorage.setItem(Constants.REMEMBERME, "1");
       }
       return data;
@@ -30,6 +32,28 @@ export const loginAction = createAsyncThunk(
       } else {
         return rejectWithValue(error?.message);
       }
+    }
+  }
+);
+
+export const logoutAction = createAsyncThunk(
+  "auth/logout",
+  async (args,thunkAPI) => {
+    try {
+      thunkAPI.dispatch(logout())
+    } catch (error: any) {
+      thunkAPI.dispatch(logoutError(error))
+    }
+  }
+);
+
+export const doAuthAction = createAsyncThunk(
+  "auth/doAuth",
+  async (args,thunkAPI) => {
+    try {
+      thunkAPI.dispatch(doAuth())
+    } catch (error: any) {
+      thunkAPI.dispatch(logoutError(error))
     }
   }
 );

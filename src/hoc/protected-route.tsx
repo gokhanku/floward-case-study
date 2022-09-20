@@ -5,8 +5,13 @@ import { Navigate } from "react-router-dom";
 import { Constants } from "../core/variables/constants";
 
 export default function PrivateRoute({ children }: any) {
+
+  const { loading, isAuthenticated, error } = useSelector(
+    (state: any) => state.auth
+  );
+
   const token = localStorage.getItem(Constants.TOKEN);
-  if (!token) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
   return children;
