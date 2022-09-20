@@ -1,20 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { Constants } from "../core/variables/constants";
-import { doAuthAction } from "../state/actions/auth.actions";
-
-
+import { doAuthAction } from "../../redux/actions/auth.actions";
+import { Constants } from "../variables/constants";
 export default function PublicRoute({ children }: any) {
-
-  
-
   const dispatch = useDispatch<any>();
   const token = localStorage.getItem(Constants.TOKEN);
   const rememberMe = localStorage.getItem(Constants.REMEMBERME);
   if (token && rememberMe) {
-    dispatch(doAuthAction())
+    dispatch(doAuthAction());
     return <Navigate to="/" />;
   }
   return children;

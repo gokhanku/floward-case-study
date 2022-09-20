@@ -1,24 +1,17 @@
-import { Navigate } from "react-router-dom";
 import React from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction } from "../state/actions/auth.actions";
+import { loginAction } from "../redux/actions/auth.actions";
 import { useEffect } from "react";
 import { LoginPayload } from "../models/login-payload";
-import { Constants } from "../core/variables/constants";
-import Spinner from 'react-bootstrap/Spinner';
-// type FormValues = {
-//   email: string;
-//   password: string;
-//   rememberMe:boolean
-// };
+import Spinner from "react-bootstrap/Spinner";
 
 const Login = () => {
   const dispatch = useDispatch<any>();
-  const { loading, isAuthenticated,token, error } = useSelector(
+  const { loading, isAuthenticated, token, error } = useSelector(
     (state: any) => state.auth
   );
   const navigate = useNavigate();
@@ -44,10 +37,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const token=localStorage.getItem(Constants.TOKEN);
-    // if(token){
-    //   navigate("/");
-    // }
     if (isAuthenticated) {
       navigate("/");
     }
@@ -70,9 +59,7 @@ const Login = () => {
   };
 
   return (
-    
     <div className={classes.pageBody}>
-       
       <div className={classes.formContainer}>
         <h1 className={classes.formHeading}>Log in to your account 🔐</h1>
 
@@ -116,27 +103,20 @@ const Login = () => {
               name="rememberMe"
             />
             <label htmlFor="checkbox">Remember me</label>
-            
           </div>
 
           <div className={classes.btnContainer}>
             <button
-
               disabled={loading}
               className="items-center  bg-primary  text-white  px-4 py-2 text-gray-800  rounded-md shadow hover:bg-gray-100"
               type="submit"
             >
-              {loading ? <Spinner  animation="border" variant="light" /> : <span>LOGIN</span> }
-              
+              {loading ? (
+                <Spinner animation="border" variant="light" />
+              ) : (
+                <span>LOGIN</span>
+              )}
             </button>
-
-            {/* <button
-              disabled={loading}
-              type="submit"
-              className={classes.btnContainer}
-            >
-              LOGIN
-            </button> */}
           </div>
         </form>
       </div>

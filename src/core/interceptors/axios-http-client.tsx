@@ -40,26 +40,6 @@ const onRequest = async (
     config.headers = { Authorization: `Bearer ${bearerToken}` };
     return config;
   }
-
-
-
-
-  
-
-  
-  //config.params && { ...config.params, ...config.params };
-
-
-  const language: any = "tr-TR"; //default languageSetting
-
-  config.headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    language: `${language}-${language?.toUpperCase()}`,
-  };
-
-  
 };
 
 const onRequestError = async (error: AxiosError): Promise<AxiosError> => {
@@ -76,52 +56,7 @@ const onResponseError = (error: AxiosError): Promise<AxiosError> => {
     errors: "",
   });
 
-  //console.log(`[response error] [${JSON.stringify(error)}]`);
-
-  // let errors = ["Something went wrong, please try again!"];
-  // var knownMessage="";
-  // if (error.response) {
-  //     if (error.response.data.errors)
-  //         errors = error.response.data.errors;
-  //     if (error.response.data.error)
-  //         errors = [error.response.data.error];
-
-  //     const knownHttpErrorCode = httpStatusCodes.find(c => c.code === error.response?.status);
-  //     if (knownHttpErrorCode) {
-  //         knownMessage = `${knownHttpErrorCode.code}: ${knownHttpErrorCode.message}`;
-  //         //TODO:show on toaster
-  //     }
-  //     if (error?.response?.status === 401) {
-
-  //         RootNavigation.navigate('Login', { });
-  //         return Promise.reject({
-  //             status: 401,
-  //             errors: []
-  //         });
-
-  //     }
-
-  // } else if (error.request) {
-
-  // } else {
-
-  // }
-
-  // if (error?.response?.status === 401) {
-
-  //     RootNavigation.navigate('Login', { });
-  //     return Promise.reject({
-  //         status: 401,
-  //         errors: []
-  //     });
-
-  // }else{
-
-  //     return Promise.reject({
-  //         status: error.response?.status,
-  //         errors: errors
-  //     });
-  // }
+  
 };
 
 const setupInterceptorsTo = (axiosInstance: AxiosInstance): AxiosInstance => {
@@ -131,3 +66,4 @@ const setupInterceptorsTo = (axiosInstance: AxiosInstance): AxiosInstance => {
 };
 
 export const AxiosHttpClient = setupInterceptorsTo(axiosApiInstance);
+//Not used this project

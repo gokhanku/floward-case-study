@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { countryAction } from "../state/actions/country.actions";
-import { AppDispatch } from "../state/store";
-import { Container, Card, Col, Button, Row, Modal } from "react-bootstrap";
+import { countryAction } from "../redux/actions/country.actions";
+import { Modal, Button } from "react-bootstrap";
 import { BsFillEyeFill } from "react-icons/bs";
 import { Names } from "../models/country-response";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +42,7 @@ const CountryListing = () => {
           <Modal.Title>Country Names</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {country?.common}-{country?.official}
+          {country?.common} - {country?.official}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -56,10 +54,7 @@ const CountryListing = () => {
       <div className="p-4 justify-center items-center">
         {loading ? (
           <div className="h-96 flex justify-center items-center">
-            <Spinner
-              animation="border"
-              variant="primary"
-            />
+            <Spinner animation="border" variant="primary" />
           </div>
         ) : (
           <table className="table-auto w-full ">
@@ -76,7 +71,12 @@ const CountryListing = () => {
                 countries.map((item, index): any => (
                   <tr key={index}>
                     <td>{item.cca2}</td>
-                    <td>{item.name.common}</td>
+                    <td
+                      className="cursor-pointer"
+                      onClick={() => handleShow(item)}
+                    >
+                      {item.name.common}
+                    </td>
                     <td>{item.capital}</td>
                     <td>
                       <button
