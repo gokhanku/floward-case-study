@@ -2,7 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 import { countryDetailAction } from "../actions/country-detail.actions";
 
 
-const initialState = {
+interface CountryDetailState {
+  loading: boolean;
+  error:any;
+  success:boolean;
+  countryDetail:any
+
+}
+
+
+const initialState:CountryDetailState = {
   loading: false,
   error: null,
   success: false,
@@ -10,7 +19,7 @@ const initialState = {
 };
 
 const countryDetailSlice = createSlice({
-  name: "auth",
+  name: "countryDetail",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

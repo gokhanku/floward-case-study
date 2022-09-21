@@ -3,14 +3,18 @@ import { Constants } from "../../core/variables/constants";
 import { loginAction } from "../actions/auth.actions";
 import { logoutAction } from "../actions/auth.actions";
 
-// initialize userToken from local storage
-// const token = localStorage.getItem(Constants.TOKEN)
-//   ? localStorage.getItem(Constants.TOKEN)
-//   : null;
+interface AuthState {
+  loading: boolean;
+  token:string,
+  error:any;
+  success:boolean;
+  isAuthenticated:boolean
 
-const initialState = {
+}
+
+const initialState:AuthState = {
   loading: false,
-  token: null,
+  token: "",
   error: null,
   success: false,
   isAuthenticated: false,

@@ -2,15 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Constants } from "../../core/variables/constants";
 import { countryAction } from "../actions/country.actions";
 
-const initialState = {
+interface CountryState {
+  loading: boolean;
+  error:any;
+  success:boolean;
+  countries:any[]
+
+}
+
+const initialState:CountryState = {
   loading: false,
   error: null,
   success: false,
-  countries:null
+  countries:[]
 };
 
 const countrySlice = createSlice({
-  name: "auth",
+  name: "country",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -26,7 +34,7 @@ const countrySlice = createSlice({
       .addCase(countryAction.rejected, (state, { payload }: any) => {
         state.loading = false;
         state.error = payload;
-        state.countries = null;
+        state.countries = [];
       });
   },
 });
