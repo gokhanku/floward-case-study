@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 
-
-
-
 const NotFound = () => {
-
-
   const classes = {
     pageBody: "h-screen flex bg-gray-bg1",
     formContainer:
@@ -18,12 +13,14 @@ const NotFound = () => {
     errorText: "text-red mb-4",
   };
 
-
   return (
     <div className="h-screen flex justify-center items-center">
-      <h1>Page not found! </h1>
-      <Link to="/">Return Main Page</Link>
-      
+      <h1>
+        Page not found!{" "}
+        <p className="text-lg text-center">
+          <Link to="/">Return Main Page</Link>
+        </p>{" "}
+      </h1>
     </div>
   );
 };
