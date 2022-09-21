@@ -8,6 +8,8 @@ import { loginAction } from "../redux/actions/auth.actions";
 import { useEffect } from "react";
 import { LoginPayload } from "../models/login-payload";
 import Spinner from "react-bootstrap/Spinner";
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const dispatch = useDispatch<any>();
@@ -44,6 +46,15 @@ const Login = () => {
 
   const onErrors = (data: any) => {
     console.log(data);
+    toast.error('Please check the errors on the form', {
+      
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
   };
 
   const classes = {
@@ -62,8 +73,11 @@ const Login = () => {
     <div className={classes.pageBody}>
       <div className={classes.formContainer}>
         <h1 className={classes.formHeading}>Log in to your account 🔐</h1>
+       
+       
 
         <form onSubmit={handleSubmit(onSubmit, onErrors)}>
+        <ToastContainer />
           <div className="mb-4">
             <label htmlFor="email">Email</label>
             <input
