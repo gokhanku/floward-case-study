@@ -27,8 +27,8 @@ export const loginAction = createAsyncThunk(
       }
       return data;
     } catch (error: any) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error?.response.data.message);
+      if (error.response && error.response.data.error) {
+        return rejectWithValue(error?.response.data.error);
       } else {
         return rejectWithValue(error?.message);
       }

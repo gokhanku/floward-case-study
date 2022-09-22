@@ -41,8 +41,23 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/");
-    }
+    } 
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    error && toast.error(error, {
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }, [error]);
+
+
+
+ 
 
   const onErrors = (data: any) => {
     console.log(data);
