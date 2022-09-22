@@ -1,16 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { doAuthAction } from "../../redux/actions/auth.actions";
 import { Constants } from "../variables/constants";
 
 export default function PrivateRoute({ children }: any) {
-
-  const { loading, isAuthenticated, error } = useSelector(
-    (state: any) => state.auth
-  );
-
+  const dispatch = useDispatch<any>();
   const token = localStorage.getItem(Constants.TOKEN);
-  if (!isAuthenticated) {
+  if (!token) {
     return <Navigate to="/login" />;
+  }else{
+    dispatch(doAuthAction());
+    return children;
   }
-  return children;
+  
 }

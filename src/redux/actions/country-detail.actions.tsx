@@ -9,7 +9,6 @@ export const countryDetailAction = createAsyncThunk(
       const { data } = await axios.get(`${enviroment.COUNTRY_BASE_URL}/alpha/${alphaCode}`);
       return data[0];
     } catch (error: any) {
-      debugger;
       if (error.response && error.response.data.message) {
         return rejectWithValue(error?.response.data.message);
       } else {

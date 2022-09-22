@@ -21,8 +21,8 @@ export const loginAction = createAsyncThunk(
         loginPayload,
         config
       );
+      localStorage.setItem(Constants.TOKEN, data.token);
       if (loginPayload.rememberMe) {
-        localStorage.setItem(Constants.TOKEN, data.token);
         localStorage.setItem(Constants.REMEMBERME, "1");
       }
       return data;

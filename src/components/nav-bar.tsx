@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { logoutAction } from "../redux/actions/auth.actions";
 import { useEffect } from "react";
+import { Constants } from "../core/variables/constants";
+import { doAuth } from "../redux/slices/auth.slice";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -16,7 +18,11 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    
+    let token = localStorage.getItem(Constants.TOKEN);
+    if(token){
+      dispatch(doAuth())
+    }else{
       navigate("/login");
     }
   }, [isAuthenticated]);

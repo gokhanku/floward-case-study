@@ -33,15 +33,16 @@ const CountryDetail = () => {
   };
 
   const getLanguages = () => {
-    return (
-      countryDetail &&
+    let entryvalues: any[] = [];
+
+    countryDetail &&
       Object.values(countryDetail?.languages).map(
         (val: any, index: any, values) => {
-          console.log(values);
-          return <span key={index}>{values.join(" | ")}</span>;
+          entryvalues = values;
         }
-      )
-    );
+      );
+
+    return <span>{entryvalues.join(" | ")}</span>;
   };
 
   const getFlags = () => {
