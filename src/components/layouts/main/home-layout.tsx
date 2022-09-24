@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "../nav-bar";
+import NavBar from "../header/nav-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { doAuthAction } from "../../redux/actions/auth.actions";
-import { Constants } from "../../core/variables/constants";
+import { doAuthAction } from "../../../store/actions/auth.actions";
+import { Constants } from "../../../config/variables/constants";
 
 export default function HomeLayout() {
   const dispatch = useDispatch<any>();

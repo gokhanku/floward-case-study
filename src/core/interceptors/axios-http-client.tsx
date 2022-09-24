@@ -4,7 +4,7 @@ import {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
-import { enviroment } from "../variables/enviroment";
+import { enviroment } from "../../config/variables/enviroment";
 const axios = require("axios");
 const axiosApiInstance = axios.create();
 

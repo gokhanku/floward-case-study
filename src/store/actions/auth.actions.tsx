@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Constants } from "../../core/variables/constants";
-import { enviroment } from "../../core/variables/enviroment";
+import { Constants } from "../../config/variables/constants";
+import { enviroment } from "../../config/variables/enviroment";
 import { LoginPayload } from "../../models/login-payload";
 import {logout,logoutError,doAuth} from "../slices/auth.slice";
 

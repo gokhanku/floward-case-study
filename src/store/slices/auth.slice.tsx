@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Constants } from "../../core/variables/constants";
+import { Constants } from "../../config/variables/constants";
 import { loginAction } from "../actions/auth.actions";
 import { logoutAction } from "../actions/auth.actions";
 

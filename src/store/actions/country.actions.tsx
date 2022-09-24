@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { enviroment } from "../../core/variables/enviroment";
+import { enviroment } from "../../config/variables/enviroment";
 
 export const countryAction = createAsyncThunk(
   "country/all",

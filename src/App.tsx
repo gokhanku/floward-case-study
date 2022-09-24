@@ -5,9 +5,9 @@ import CountryListing from "./pages/country-listing";
 import CountryDetails from "./pages/country-detail";
 import Login from "./pages/login";
 import NotFound from "./pages/not-found";
-import HomeLayout from "./components/layouts/home-layout";
-import DefaultLayout from "./components/layouts/default-layout";
-import LoginRoute from "./components/routes/login-route";
+import HomeLayout from "./components/layouts/main/home-layout";
+import LoginRoute from "./routes/login-route";
+import DefaultLayout from "./components/layouts/main/default-layout";
 
 function App() {
   return (

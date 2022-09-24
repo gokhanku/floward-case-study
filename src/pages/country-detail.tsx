@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { countryDetailAction } from "../redux/actions/country-detail.actions";
-import NavBar from "../components/nav-bar";
+import { countryDetailAction } from "../store/actions/country-detail.actions";
+import NavBar from "../components/layouts/header/nav-bar";
 import Spinner from "react-bootstrap/Spinner";
-import { AppDispatch, RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../store";
 
 const CountryDetail = () => {
   const dispatch = useDispatch<AppDispatch>();

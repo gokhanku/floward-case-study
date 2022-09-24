@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { countryAction } from "../redux/actions/country.actions";
+import { countryAction } from "../store/actions/country.actions";
 import { Modal, Button } from "react-bootstrap";
 import { BsFillEyeFill } from "react-icons/bs";
 import { Names } from "../models/country-response";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/nav-bar";
+import NavBar from "../components/layouts/header/nav-bar";
 import Spinner from "react-bootstrap/Spinner";
-import { AppDispatch, RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../store";
 
 const CountryListing = () => {
   const navigate = useNavigate();

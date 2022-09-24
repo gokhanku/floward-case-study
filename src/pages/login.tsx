@@ -4,13 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction } from "../redux/actions/auth.actions";
+import { loginAction } from "../store/actions/auth.actions";
 import { useEffect } from "react";
 import { LoginPayload } from "../models/login-payload";
 import Spinner from "react-bootstrap/Spinner";
 import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AppDispatch, RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../store";
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();

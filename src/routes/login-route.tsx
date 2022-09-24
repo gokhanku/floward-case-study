@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { Constants } from "../../core/variables/constants";
+import { Constants } from "../config/variables/constants";
 export default function LoginRoute({ children }: any) {
   const token = localStorage.getItem(Constants.TOKEN);
   const rememberMe = localStorage.getItem(Constants.REMEMBERME);
