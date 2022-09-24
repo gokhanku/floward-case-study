@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
-import { Constants } from "../variables/constants";
-export default function PublicRoute({ children }: any) {
+import { Constants } from "../../core/variables/constants";
+export default function LoginRoute({ children }: any) {
   const token = localStorage.getItem(Constants.TOKEN);
   const rememberMe = localStorage.getItem(Constants.REMEMBERME);
   if (token && rememberMe) {
@@ -8,5 +8,3 @@ export default function PublicRoute({ children }: any) {
   }else 
     return children;
   }
-  
-

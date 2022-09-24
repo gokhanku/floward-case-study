@@ -18,7 +18,6 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    
     let token = localStorage.getItem(Constants.TOKEN);
     if(token){
       dispatch(doAuth())

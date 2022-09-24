@@ -64,7 +64,6 @@ const CountryDetail = () => {
 
   return (
     <div>
-      <NavBar />
       {loading ? (
         <div className="h-96 flex justify-center items-center">
           <Spinner animation="border" variant="primary" />

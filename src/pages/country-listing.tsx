@@ -37,7 +37,6 @@ const CountryListing = () => {
 
   return (
     <div className=" justify-center">
-      <NavBar />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Country Names</Modal.Title>
