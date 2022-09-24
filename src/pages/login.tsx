@@ -10,11 +10,12 @@ import { LoginPayload } from "../models/login-payload";
 import Spinner from "react-bootstrap/Spinner";
 import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AppDispatch, RootState } from "../redux/store";
 
 const Login = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const { loading, isAuthenticated, token, error } = useSelector(
-    (state: any) => state.auth
+    (state: RootState) => state.auth
   );
   const navigate = useNavigate();
   let validationSchema = yup.object().shape({
@@ -43,6 +44,8 @@ const Login = () => {
       navigate("/");
     } 
   }, [isAuthenticated]);
+
+  
 
   useEffect(() => {
     error && toast.error(error, {
