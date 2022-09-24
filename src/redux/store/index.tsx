@@ -10,6 +10,7 @@ export const store = configureStore({
     countryDetail: countryDetailReducer,
     auth: authReducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export type AppDispatch = typeof store.dispatch; // global dispatch type
