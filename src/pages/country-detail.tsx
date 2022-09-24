@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { countryDetailAction } from "../redux/actions/country-detail.actions";
 import NavBar from "../components/nav-bar";
 import Spinner from "react-bootstrap/Spinner";
+import { AppDispatch, RootState } from "../redux/store";
 
 const CountryDetail = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const { alphaCode } = useParams();
   const { loading, error, countryDetail } = useSelector(
-    (state: any) => state.countryDetail
+    (state: RootState) => state.countryDetail
   );
 
   useEffect(() => {
@@ -19,30 +20,24 @@ const CountryDetail = () => {
   }, []);
 
   const getCurrencies = () => {
-    let entryvalues: any[] = [];
-    countryDetail &&
-      Object.values(countryDetail?.currencies).map(
-        (value: any, mainIndex: any, values) => {
-          entryvalues = values;
-        }
-      );
-    return entryvalues.map((val: any, index) => {
-      let item = `${val.name} - ${val.symbol}`;
-      return <div key={index}>{item} </div>;
-    });
+    if (countryDetail) {
+      let entryvalues = Object.values(countryDetail?.currencies);
+      return entryvalues.map((val: any, index) => {
+        let item = `${val.name} - ${val.symbol}`;
+        return <div key={index}>{item} </div>;
+      });
+    } else {
+      return null;
+    }
   };
 
   const getLanguages = () => {
-    let entryvalues: any[] = [];
-
-    countryDetail &&
-      Object.values(countryDetail?.languages).map(
-        (val: any, index: any, values) => {
-          entryvalues = values;
-        }
-      );
-
-    return <span>{entryvalues.join(" | ")}</span>;
+    if (countryDetail) {
+      let entryvalues = Object.values(countryDetail?.languages);
+      return <span>{entryvalues.join(" | ")}</span>;
+    } else {
+      return null;
+    }
   };
 
   const getFlags = () => {
