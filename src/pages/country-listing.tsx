@@ -7,6 +7,7 @@ import { Names } from "../models/country-response";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/nav-bar";
 import Spinner from "react-bootstrap/Spinner";
+import { AppDispatch, RootState } from "../redux/store";
 
 const CountryListing = () => {
   const navigate = useNavigate();
@@ -21,9 +22,9 @@ const CountryListing = () => {
     });
     setShow(true);
   };
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const { loading, error, countries } = useSelector(
-    (state: any) => state.country
+    (state: RootState) => state.country
   );
 
   useEffect(() => {
