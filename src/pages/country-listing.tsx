@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { countryAction } from "../store/actions/country.actions";
 import { Modal, Button } from "react-bootstrap";
@@ -27,9 +27,17 @@ const CountryListing = () => {
     (state: RootState) => state.country
   );
 
-  useEffect(() => {
-    dispatch(countryAction());
-  }, []);
+  // useEffect(() => {
+  //   if(countries.length==0){
+  //     dispatch(countryAction());
+  //   }
+  // }, []);
+
+  useMemo(()=>{
+    if(countries.length==0){
+      dispatch(countryAction());
+    }
+  },[])
 
   const goToDetail = (cca3: string) => {
     navigate(`/details/${cca3}`);
