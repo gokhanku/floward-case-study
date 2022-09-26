@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -8,8 +8,8 @@ import { loginAction } from "../store/actions/auth.actions";
 import { useEffect } from "react";
 import { LoginPayload } from "../models/login-payload";
 import Spinner from "react-bootstrap/Spinner";
-import { toast,ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AppDispatch, RootState } from "../store";
 
 const Login = () => {
@@ -42,37 +42,31 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/");
-    } 
+    }
   }, [isAuthenticated]);
 
-  
-
   useEffect(() => {
-    error && toast.error(error, {
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+    error &&
+      toast.error(error, {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
   }, [error]);
 
-
-
- 
-
   const onErrors = (data: any) => {
     console.log(data);
-    toast.error('Please check the errors on the form', {
-      
+    toast.error("Please check the errors on the form", {
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      });
+    });
   };
 
   const classes = {
@@ -91,11 +85,9 @@ const Login = () => {
     <div className={classes.pageBody}>
       <div className={classes.formContainer}>
         <h1 className={classes.formHeading}>Log in to your account 🔐</h1>
-       
-       
 
         <form onSubmit={handleSubmit(onSubmit, onErrors)}>
-        <ToastContainer />
+          <ToastContainer />
           <div className="mb-4">
             <label htmlFor="email">Email</label>
             <input
